@@ -128,7 +128,7 @@ display:inline-block;vertical-align:middle;width:115px;height:38px;line-height:3
 .p-header .header-nav li{display:inline-block;*display:inline;margin-right: 15px;}
 .p-header .header-nav li a{height:36px;line-height:36px;padding:0 15px;display:inline-block;color:#ffffff;letter-spacing:1px;}
 .p-header .header-nav li a:hover,.p-header .header-nav li.current a{background-color: #73b6c7;text-decoration: none;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
-/**.p-header .hededer-login{float:right;font-size: 15px;margin:34px 0 0;}*/
+/**.p-header .hededer-main{float:right;font-size: 15px;margin:34px 0 0;}*/
 .p-header .hededer-login{white-space: nowrap;width:auto;display:inline-block;*display:inline;font-size: 15px;text-align:right;}
 .p-header .hededer-login a{color:#ffffff;}
 .p-header .hededer-login .cut{margin:0 8px;}

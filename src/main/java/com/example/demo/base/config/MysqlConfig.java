@@ -16,16 +16,20 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
-@MapperScan("com.example.demo.mapper")
+@MapperScan(basePackages = "com.example.demo.mapper")
 public class MysqlConfig {
+
     @Autowired
     private Environment env;
 
     @Bean
-//    @ConfigurationProperties(prefix = "spring.datasource")
+    @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource getDataSoure(){
+//        DruidDataSource druidDataSource = new DruidDataSource();
+//        Integer i = 1;
         return new DruidDataSource();
     }
 
@@ -35,7 +39,7 @@ public class MysqlConfig {
         sqlSessionFactoryBean.setDataSource(getDataSoure());
 //        sqlSessionFactoryBean.setTypeAliasesPackage(env.getProperty("mybatis.typeAliasesPackage"));
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-//        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mybatis/*.xml"));
+        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mybatis/*.xml"));
         return sqlSessionFactoryBean.getObject();
     }
 
