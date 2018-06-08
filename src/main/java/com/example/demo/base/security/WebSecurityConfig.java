@@ -25,14 +25,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/addUser","/druid/**","/login/**").permitAll()
-                .antMatchers("/css/**", "/js/**","/images/**", "/webjars/**", "**/favicon.ico", "/assets/**", "/font/**").permitAll()
+                .authorizeRequests().antMatchers("/addUser","/druid/**","/login").permitAll()
+                .antMatchers("/css/**", "/js/**","/images/**", "/webjars/**", "**/favicon.ico", "/assets/**", "/font/**", "/*.html").permitAll()
                 .and().authorizeRequests().anyRequest().authenticated()
-                .and().formLogin().loginPage("/login");
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/index").failureUrl("/login?error");
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.authenticationProvider(getAuthenticationProvider());
         auth.authenticationProvider(getAuthenticationProvider());
     }
 }

@@ -11,4 +11,8 @@
     <insert id="addUser" parameterType="map">
         INSERT INTO USER (username,password,name) VALUES (#{username},#{password},#{name})
     </insert>
+
+    <select id="findByUsername" parameterType="string" resultType="com.example.demo.entity.User">
+        select * from user where username = #{username}
+    </select>
 </mapper>
