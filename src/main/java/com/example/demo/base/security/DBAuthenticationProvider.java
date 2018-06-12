@@ -26,11 +26,13 @@ public class DBAuthenticationProvider implements AuthenticationProvider {
         String username = authentication.getName();
         String password = (String)authentication.getCredentials();
         User user = (User)userService.loadUserByUsername(username);
-        Role role = new Role();
-        role.setName("xxx");
-        List list = new ArrayList();
-        list.add(role);
-        user.setRoles(list);
+        if (user.getRoles() == null) {
+            Role role = new Role();
+            role.setName("default");
+            List list = new ArrayList();
+            list.add(role);
+            user.setRoles(list);
+        }
         if(user == null){
             throw new BadCredentialsException("用户不存在");
         }

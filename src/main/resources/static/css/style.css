@@ -103,7 +103,7 @@ body
 .Reg_log_style .frame_style label.Codes_icon{background-position: -5px -60px;}
 .Reg_log_style .frame_style.form_errors{ border:1px solid #1db5e1}
 .Reg_log_style .frame_style #Codes_text{ width:150px; padding:0px 10px;}
-.Reg_log_style .frame_style .Codes_region{ position:absolute; height:38px; border-left:1px solid #ddd; width:80px; right:0px; top:0px;}
+.Reg_log_style .frame_style .Codes_region{ position:absolute; height:38px; border-left:1px solid #ddd; width:80px; right:0px; top:0px;text-align: center}
 .Reg_log_style .frame_style.form_errors .Codes_region{border-left:1px solid #1db5e1;}
 .Reg_log_style .frame_style.form_errors label{ border-right:1px solid #1db5e1;}
 .Reg_log_style .frame_style.form_errors label.password_icon{background-position: -39px 0px;}

@@ -1,18 +1,23 @@
 package com.example.demo.controller;
 
+import com.example.demo.base.utils.ValidateCodeUtil;
 import com.example.demo.entity.LoginParam;
 import com.example.demo.service.MainService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 //@RequestMapping("/main")
 @Controller
-public class LoginController extends BaseController{
+public class MainController extends BaseController{
 
 
     @Autowired
@@ -26,16 +31,13 @@ public class LoginController extends BaseController{
         return "/main/login";
     }
 
-    @RequestMapping(value = "signIn", method = RequestMethod.POST)
-    @ResponseBody
-    public Map login(@RequestBody LoginParam loginParam){
-        Map result = new HashMap();
-        mainService.signIn(loginParam);
-        result.put("code",200);
-        return result;
+    @RequestMapping(value = "/signIn", method = RequestMethod.GET)
+    public String signIn(Model model){
+        model.addAttribute("errorFlag",true);
+        return "/main/login";
     }
 
-    @GetMapping("/index")
+    @GetMapping(value = {"/index","/",""})
     public String test(){
         return "/main/base";
     }
@@ -52,5 +54,14 @@ public class LoginController extends BaseController{
     public String test3(){
         //userService.addUser(map);
         return "success";
+    }
+
+    @GetMapping("/getValidateCode")
+    public void getValidateCode(HttpServletRequest request, HttpServletResponse response){
+        try {
+            ValidateCodeUtil.createImage(request,response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
