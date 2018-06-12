@@ -4,6 +4,8 @@ import com.example.demo.base.utils.ValidateCodeUtil;
 import com.example.demo.entity.LoginParam;
 import com.example.demo.service.MainService;
 import com.example.demo.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,7 @@ import java.util.Map;
 @Controller
 public class MainController extends BaseController{
 
+    private Logger logger = LoggerFactory.getLogger(MainController.class);
 
     @Autowired
     private UserService userService;
@@ -28,6 +31,7 @@ public class MainController extends BaseController{
 
     @GetMapping("/login")
     public String index(){
+        logger.info("test");
         return "/main/login";
     }
 
@@ -52,7 +56,7 @@ public class MainController extends BaseController{
     @GetMapping("/test")
     @ResponseBody
     public String test3(){
-        //userService.addUser(map);
+//        userService.addUser(map);
         return "success";
     }
 
