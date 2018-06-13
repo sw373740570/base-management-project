@@ -35,11 +35,11 @@ public class MainController extends BaseController{
         return "/main/login";
     }
 
-    @RequestMapping(value = "/signIn", method = RequestMethod.GET)
-    public String signIn(Model model){
-        model.addAttribute("errorFlag",true);
-        return "/main/login";
-    }
+//    @RequestMapping(value = "/signIn", method = RequestMethod.GET)
+//    public String signIn(Model model){
+//        model.addAttribute("errorFlag",true);
+//        return "/main/login";
+//    }
 
     @GetMapping(value = {"/index","/",""})
     public String test(){
@@ -53,13 +53,6 @@ public class MainController extends BaseController{
         return "success";
     }
 
-    @GetMapping("/test")
-    @ResponseBody
-    public String test3(){
-//        userService.addUser(map);
-        return "success";
-    }
-
     @GetMapping("/getValidateCode")
     public void getValidateCode(HttpServletRequest request, HttpServletResponse response){
         try {
@@ -67,5 +60,10 @@ public class MainController extends BaseController{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @GetMapping("/home")
+    public String home(){
+        return "/main/home";
     }
 }

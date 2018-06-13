@@ -36,9 +36,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .addFilterBefore(getValidateCodeAuthenticationFilter(),UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests().antMatchers("/getValidateCode","/druid/**","/signIn","/login").permitAll()
-                .antMatchers("/css/**", "/js/**","/images/**", "/webjars/**", "**/favicon.ico", "/assets/**", "/font/**", "/*.html").permitAll()
+                .antMatchers("/css/**", "/js/**","/images/**", "/webjars/**", "**/favicon.ico", "/assets/**", "/font/**", "/user/**").permitAll()
                 .and().authorizeRequests().anyRequest().authenticated()
-                .and().formLogin().loginPage("/login");
+                .and().formLogin().loginPage("/login")
+                /**
+                 * spring Security下，X-Frame-Options默认为DENY,非Spring Security环境下，X-Frame-Options的默认大多也是DENY，这种情况下，浏览器拒绝当前页面加载任何Frame页面，设置含义如下：
+                 *
+                 *     DENY：浏览器拒绝当前页面加载任何Frame页面
+                 *     SAMEORIGIN：frame页面的地址只能为同源域名下的页面
+                 *     ALLOW-FROM：origin为允许frame加载的页面地址。
+                 */
+                .and().headers().frameOptions().sameOrigin();
     }
 
     @Override

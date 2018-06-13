@@ -29,11 +29,11 @@ public class ValidateCodeAuthenticationFilter extends AbstractAuthenticationProc
     public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException, IOException, ServletException {
         String code = (String)httpServletRequest.getSession().getAttribute("validateCode");
         String inputCode = httpServletRequest.getParameter("code");
-        if (StringUtils.isEmpty(inputCode) || !inputCode.toUpperCase().equals(code)){
-            throw new BadCredentialsException("验证码错误");
-        }else {
-            httpServletRequest.getSession().removeAttribute("validateCode");
-        }
+//        if (StringUtils.isEmpty(inputCode) || !inputCode.toUpperCase().equals(code)){
+//            throw new BadCredentialsException("验证码错误");
+//        }else {
+//            httpServletRequest.getSession().removeAttribute("validateCode");
+//        }
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(httpServletRequest.getParameter("username"),httpServletRequest.getParameter("password"));
         return this.getAuthenticationManager().authenticate(token);
     }

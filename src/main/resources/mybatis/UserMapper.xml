@@ -15,4 +15,7 @@
     <select id="findByUsername" parameterType="string" resultType="com.example.demo.entity.User">
         select * from user where username = #{username}
     </select>
+    <select id="getUserList" parameterType="map" resultType="com.example.demo.model.User">
+        select * from user
+    </select>
 </mapper>
